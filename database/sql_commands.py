@@ -13,6 +13,7 @@ class Database:
 
         self.connection.execute(sql_queries.CREATE_USER_TABLE_QUERY)
         self.connection.execute(sql_queries.CREATE_BAN_USER_TABLE_QUERY)
+        self.connection.execute(sql_queries.CREATE_USER_FORM_TABLE_QUERY)
 
         self.connection.commit()
 
@@ -31,7 +32,7 @@ class Database:
         self.connection.commit()
 
     def sql_select_ban_user(self, telegram_id):
-        self.cursor.row_factory = lambda cursor, row:{
+        self.cursor.row_factory = lambda cursor, row: {
             "id": row[0],
             "telegram_id": row[1],
             "count": row[2],
@@ -45,5 +46,13 @@ class Database:
         self.cursor.execute(
             sql_queries.UPDATE_BAN_USER_COUNT_QUERY,
             (telegram_id,)
+        )
+        self.connection.commit()
+
+    def sql_insert_user_form_register(self, telegram_id, nickname, biography, geoposition,
+                                      gender, age, photo):
+        self.cursor.execute(
+            sql_queries.INSERT_USER_FORM_QUERY,
+            (None, telegram_id, nickname, biography, geoposition, gender, age, photo)
         )
         self.connection.commit()
