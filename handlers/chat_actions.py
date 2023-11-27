@@ -49,7 +49,7 @@ async def chat_messages(message: types.Message):
                 await bot.ban_chat_member(
                     chat_id=message.chat.id,
                     user_id=message.from_user.id,
-                    until_date=datetime.datetime.now() + datetime.timedelta(minutes=10)
+                    # until_date=datetime.datetime.now() + datetime.timedelta(minutes=10)
                 )
             elif user:
                 db.sql_update_ban_users_count(
