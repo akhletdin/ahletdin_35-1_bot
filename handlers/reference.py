@@ -43,13 +43,28 @@ async def reference_link_call(call: types.CallbackQuery):
         )
         await bot.send_message(
             chat_id=call.from_user.id,
-            text=f"Here is your new link: {link}"
+            text=f"Вот ваша новая ссылка: {link}"
         )
     else:
         await bot.send_message(
             chat_id=call.from_user.id,
-            text=f"Here is your database link: {user['link']}"
+            text=f"Вот ссылка на вашу базу данных: {user['link']}"
         )
+
+
+async def reference_list_call(call: types.CallbackQuery):
+    db = Database()
+    user = db.sql_select_user(
+        telegram_id=call.from_user.id
+    )
+    if user:
+        await bot.send_message(
+            chat_id=call.from_user.id,
+            text=user
+        )
+    else:
+        await bot.send_message(chat_id=call.from_user.id,
+                               text='нет пользователя')
 
 
 def register_reference_handlers(dp: Dispatcher):
@@ -57,3 +72,5 @@ def register_reference_handlers(dp: Dispatcher):
                                        lambda call: call.data == "reference_menu")
     dp.register_callback_query_handler(reference_link_call,
                                        lambda call: call.data == "reference_link")
+    dp.register_callback_query_handler(reference_list_call,
+                                       lambda call: call.data == "reference_list")
