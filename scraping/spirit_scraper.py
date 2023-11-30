@@ -13,6 +13,8 @@ class SpiritScraper:
     LINK_XPATH = '//div[@class="custom-poster"]/a/@href'
     IMG_XPATH = '//div[@class="custom-poster"]/a/img/@src'
     SERIES_XPATH = '//div[@class="custom-label1"]/text()'
+    NEW_XPATH = '//div[@class="row newsCards"]/div/a/@href'
+    PAGE_XPATH = '//div[@class="card col-viev"]/a/@href'
 
     def parse_data(self):
         html = requests.get(url=self.MAIN_URL, headers=self.headers,
@@ -22,12 +24,18 @@ class SpiritScraper:
         links = tree.xpath(self.LINK_XPATH).extract()
         images = tree.xpath(self.IMG_XPATH).extract()
         series = tree.xpath(self.SERIES_XPATH).extract()
+        news = tree.xpath(self.NEW_XPATH).extract()
+        pages = tree.xpath(self.NEW_XPATH).extract()
         for link in links:
             print(link)
         for image in images:
             print(image)
         for serie in series:
             print(serie)
+        for new in series:
+            print(new)
+        for page in series:
+            print(page)
 
 
 if __name__ == "__main__":
