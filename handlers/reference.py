@@ -64,7 +64,7 @@ async def reference_list_call(call: types.CallbackQuery):
         )
     else:
         await bot.send_message(chat_id=call.from_user.id,
-                               text='нет пользователя')
+                               text="нет пользователя")
 
 
 def register_reference_handlers(dp: Dispatcher):
