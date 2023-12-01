@@ -46,10 +46,10 @@ async def admin_call(message: types.Message):
 async def scraper_call(call: types.CallbackQuery):
     scraper = NewsScraper()
     data = scraper.parse_data()
-    for url in data[:4]:
+    for url in data[:5]:
         await bot.send_message(
             chat_id=call.from_user.id,
-            text=f"{scraper.PLUS_URL + url}"
+            text=f"https://24.kg/{url}"
         )
 
 
