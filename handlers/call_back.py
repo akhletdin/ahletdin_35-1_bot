@@ -1,5 +1,5 @@
 import sqlite3
-
+import re
 from aiogram import types, Dispatcher
 from config import bot, ADMIN_ID
 from database.sql_commands import Database
@@ -54,12 +54,19 @@ async def scraper_call(call: types.CallbackQuery):
         )
 
 
-async def async_service(call: types.CallbackQuery):
+async def async_scraper_call(call: types.CallbackQuery):
     data = await AsyncScraper().async_scrapers()
-    links = AsyncScraper.PLUS_URL
+    links = AsyncScraper
     for link in data:
-        await bot.send_message(chat_id=call.from_user.id, text=f"Услуги О!:"
-                                                               f"\n{links}{link}", reply_markup=await save_button())
+        await bot.send_message(chat_id=call.from_user.id, text=f"{link}", reply_markup=await save_button())
+
+
+async def save_service_call(call: types.CallbackQuery):
+    link = re.search(r'(https?://\S+)', call.message.text)
+    if link:
+        Database().sql_insert_servise_commands(link=link.group(0))
+
+    await bot.send_message(chat_id=call.from_user.id, text="Вы сохранили ссылку")
 
 
 def register_callback_handlers(dp: Dispatcher):
@@ -73,5 +80,7 @@ def register_callback_handlers(dp: Dispatcher):
                                 lambda word: "dorei" in word.text)
     dp.register_callback_query_handler(scraper_call,
                                        lambda call: call.data == "news")
-    dp.register_callback_query_handler(async_service,
-                                       lambda call: call.data == 'async_service')
+    dp.register_callback_query_handler(async_scraper_call,
+                                       lambda call: call.data == 'async_news')
+    dp.register_callback_query_handler(save_service_call,
+                                       lambda call: call.data == 'save_service')

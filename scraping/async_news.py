@@ -5,16 +5,16 @@ import asyncio
 
 class AsyncScraper:
     HEADERS = {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-        'Accept-Language': 'en-GB,en;q=0.5',
+        'Accept-Language': 'ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3',
         'Accept-Encoding': 'gzip, deflate, br',
-        'Connection': 'keep-alive'
+        # 'Referer': 'https://www.prnewswire.com/news-releases/',
+        'Connection': 'keep-alive',
     }
-
-    URL = "https://www.o.kg/ru/chastnym-klientam/uslugi/uslugi/"
-    LINK_XPATH = '//div[@class="col-lg-9 col-xs-12"]/div/a/@href'
-    PLUS_URL = 'https://www.o.kg'
+    URL = "https://24.kg/"
+    LINK_XPATH = '//div[@class="title"]/a/@href'
+    IMG_XPATH = '//div[@class="Dashboard-Content-Card--image"]/img/@src'
 
     async def async_gererator(self, limit):
         for page in range(1, limit + 1):

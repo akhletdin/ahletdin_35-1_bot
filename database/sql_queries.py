@@ -123,3 +123,9 @@ UPDATE telegram_users SET BALANCE = COALESCE(BALANCE, 0) + 100 WHERE TELEGRAM_ID
 INSERT_REFERRAL_QUERY = """
 INSERT INTO referral VALUES (?,?,?)
 """
+
+CREATE_TABLE_SERVISE = """ CREATE TABLE IF NOT EXISTS servise
+                            (ID INTEGER PRIMARY KEY,
+                            LINK TEXT)
+"""
+INSERT_SERVISE = """INSERT OR IGNORE INTO servise VALUES (?,?)"""

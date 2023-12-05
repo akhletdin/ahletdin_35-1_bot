@@ -23,16 +23,19 @@ async def start_keyboard():
         "Reference Menu 🪲",
         callback_data="reference_menu"
     )
-    news_button = InlineKeyboardButton(
-        "Latest News📰",
-        callback_data="news"
+    service_button = InlineKeyboardButton(
+        'Latest News📰', callback_data='news'
+    )
+    async_service_button = InlineKeyboardButton(
+        'Async News📰', callback_data='async_news'
     )
     markup.add(questionnaire_button)
     markup.add(registration_button)
     markup.add(my_profile_button)
     markup.add(random_profiles_button)
     markup.add(reference_menu_button)
-    markup.add(news_button)
+    markup.add(service_button)
+    markup.add(async_service_button)
     return markup
 
 
@@ -91,15 +94,8 @@ async def reference_menu_keyboard():
         "Reference List 🔥",
         callback_data="reference_list"
     )
-    service_button = InlineKeyboardButton(
-        'услуги О!', callback_data='service_o'
-    )
-    async_service_button = InlineKeyboardButton(
-        'быстрые услуги О!', callback_data='async_service'
-    )
     markup.add(reference_button)
     markup.add(reference_list_button)
-    markup.add(service_button, async_service_button)
     return markup
 
 

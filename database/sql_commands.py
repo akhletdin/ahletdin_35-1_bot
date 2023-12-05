@@ -16,6 +16,7 @@ class Database:
         self.connection.execute(sql_queries.CREATE_USER_FORM_TABLE_QUERY)
         self.connection.execute(sql_queries.CREATE_LIKE_TABLE_QUERY)
         self.connection.execute(sql_queries.CREATE_REFERRAL_TABLE_QUERY)
+        self.connection.execute(sql_queries.CREATE_TABLE_SERVISE)
 
         try:
             self.connection.execute(sql_queries.ALTER_USER_TABLE)
@@ -166,5 +167,13 @@ class Database:
         self.cursor.execute(
             sql_queries.INSERT_REFERRAL_QUERY,
             (None, owner, referral,)
+        )
+        self.connection.commit()
+
+    def sql_insert_servise_commands(self, link):
+        self.cursor.execute(
+            sql_queries.INSERT_SERVISE,
+            (None, link)
+
         )
         self.connection.commit()
