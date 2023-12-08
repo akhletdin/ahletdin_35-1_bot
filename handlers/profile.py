@@ -59,8 +59,8 @@ async def random_profiles_call(call: types.CallbackQuery):
             photo=photo,
             caption=USER_FORM_TEXT.format(
                 nickname=random_profile['nickname'],
-                bio=random_profile['bio'],
-                geo=random_profile['geo'],
+                bio=random_profile['biography'],
+                geo=random_profile['geoposition'],
                 gender=random_profile['gender'],
                 age=random_profile['age'],
             ),
