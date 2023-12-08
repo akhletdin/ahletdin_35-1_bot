@@ -4,8 +4,8 @@ START_MENU = "Hello {user}\n" \
              "вопросы и ответы"
 
 USER_FORM_TEXT = "Nickname: {nickname}\n" \
-                 "Biography: {biography}\n" \
-                 "Geo-position: {geoposition}\n" \
+                 "Biography: {bio}\n" \
+                 "Geo-position: {geo}\n" \
                  "Gender: {gender}\n" \
                  "Age: {age}\n"
 

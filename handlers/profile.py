@@ -22,8 +22,8 @@ async def my_profile_call(call: types.CallbackQuery):
             photo=photo,
             caption=USER_FORM_TEXT.format(
                 nickname=profile['nickname'],
-                biography=profile['biography'],
-                geoposition=profile['geoposition'],
+                bio=profile['biography'],
+                geo=profile['geoposition'],
                 gender=profile['gender'],
                 age=profile['age'],
             ),
@@ -59,8 +59,8 @@ async def random_profiles_call(call: types.CallbackQuery):
             photo=photo,
             caption=USER_FORM_TEXT.format(
                 nickname=random_profile['nickname'],
-                biography=random_profile['biography'],
-                geoposition=random_profile['geoposition'],
+                bio=random_profile['bio'],
+                geo=random_profile['geo'],
                 gender=random_profile['gender'],
                 age=random_profile['age'],
             ),
